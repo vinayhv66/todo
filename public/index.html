@@ -15,12 +15,12 @@
 <body>
     <section id="auth">
         <div>
-            <h2 className="sign-up-text">Login</h2>
+            <h2 class="sign-up-text">Login</h2>
             <p>Create an account!</p>
         </div>
 
         <p id="error" style="display: none;"></p>
-        <input id="emailInput" placeholder="Email" />
+        <input id="emailInput" placeholder="Email" type="email" />
         <input id="passwordInput" placeholder="********" type="password" />
         <button id="authBtn" onclick="authenticate()">
             Submit
@@ -50,7 +50,6 @@
 
 
     </main>
-</body>
 <script>
     let token = localStorage.getItem('token')
 
@@ -180,17 +179,25 @@
         const passVal = password.value
 
         // guard clauses... if authenticating, return
-        if (
-            isLoading ||
-            isAuthenticating ||
-            !emailVal ||
-            !passVal ||
-            passVal.length < 6 ||
-            !emailVal.includes('@')
-        ) { return }
+        if (isLoading || isAuthenticating) { return }
+        if (!emailVal || !passVal) {
+            textError.innerText = 'Enter email and password.'
+            textError.style.display = 'block'
+            return
+        }
+        if (!emailVal.includes('@')) {
+            textError.innerText = 'Enter a valid email address.'
+            textError.style.display = 'block'
+            return
+        }
+        if (passVal.length < 6) {
+            textError.innerText = 'Password must be at least 6 characters.'
+            textError.style.display = 'block'
+            return
+        }
 
         // reset error and set isAuthenticating to true
-        error.style.display = 'none'
+        textError.style.display = 'none'
         isAuthenticating = true
         authBtn.innerText = 'Authenticating...'
 
@@ -232,8 +239,8 @@
 
         } catch (err) {
             console.log(err.message)
-            error.innerText = err.message
-            error.style.display = 'block'
+            textError.innerText = err.message
+            textError.style.display = 'block'
         } finally {
             authBtn.innerText = 'Submit'
             isAuthenticating = false
@@ -251,10 +258,10 @@
     async function fetchTodos() {
         isLoading = true
         const response = await fetch(apiBase + 'todos', {
-            headers: { 'Authorization': token }
+            headers: { 'Authorization': `Bearer ${token}` }
         })
         const todosData = await response.json()
-        todos = todosData
+        todos = Array.isArray(todosData) ? todosData : []
         isLoading = false
         renderTodos()
     }
@@ -265,9 +272,9 @@
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json',
-                'Authorization': token
+                'Authorization': `Bearer ${token}`
             },
-            body: JSON.stringify({ task: todos.find(val => val.id === index).task, completed: 1 })
+            body: JSON.stringify({ completed: true })
         })
         fetchTodos()
     }
@@ -277,7 +284,7 @@
         await fetch(apiBase + 'todos' + '/' + index, {
             method: 'DELETE',
             headers: {
-                'Authorization': token
+                'Authorization': `Bearer ${token}`
             },
         })
         fetchTodos()
@@ -294,7 +301,7 @@
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
-                'Authorization': token
+                'Authorization': `Bearer ${token}`
             },
             body: JSON.stringify({ task })
         })
@@ -318,5 +325,5 @@
         run()
     }
 </script>
-
+</body>
 </html>

@@ -1,22 +1,25 @@
-import { DatabaseSync } from 'node:sqlite';
-const db = new DatabaseSync(':memory:');
+import Database from 'better-sqlite3';
 
-// execute sql statements from strings  
+// Use in-memory database; data resets on server restart
+const db = new Database(':memory:');
+
+// Initialize schema if not present
 db.exec(`
-  CREATE TABLE users (
-  id INTEGER primary key AUTOINCREMENT ,
-  username TEXT UNIQUE,
-  password TEXT
-);
+  CREATE TABLE IF NOT EXISTS users (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    username TEXT UNIQUE,
+    password TEXT
+  );
 `);
+
 db.exec(`
-  create TABLE todos (
-  id INTEGER primary key AUTOINCREMENT ,
-  user_id INTEGER,
-  task TEXT,
-  completed BOOLEAN DEFAULT 0,
-  FOREIGN KEY (user_id) REFERENCES users(id)
-);
-`); 
+  CREATE TABLE IF NOT EXISTS todos (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    user_id INTEGER,
+    task TEXT,
+    completed INTEGER DEFAULT 0,
+    FOREIGN KEY (user_id) REFERENCES users(id)
+  );
+`);
 
 export default db;

@@ -6,7 +6,7 @@ POST http://localhost:5000/auth/register
 Content-Type: application/json
 
 {
-  "username": "vinay@gmail.com",
+  "username": "vinay66@gmal.com",
   "password": "123123"
 }
 
@@ -14,8 +14,29 @@ Content-Type: application/json
 POST http://localhost:5000/auth/login
 Content-Type: application/json  
 
-
 {
-  "username": "vinay@gmail.com",
+  "username": "vinay66@gmal.com",
   "password": "123123"
 }
+### fetch todos get todos
+GET http://localhost:5000/todos
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNzU5MjI1MzE0LCJleHAiOjE3NTkzMTE3MTR9.BGarQZcWZHIZqbq2b1QHG--W4McybyWiBx33aoOGOxo
+### create todo - POST
+POST http://localhost:5000/todos
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNzU5MjI1MzE0LCJleHAiOjE3NTkzMTE3MTR9.BGarQZcWZHIZqbq2b1QHG--W4McybyWiBx33aoOGOxo
+Content-Type: application/json
+
+{
+  "task": "Buy milk"
+}
+
+### update todo - PUT
+PUT http://localhost:5000/todos/5
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNzU5MjI1MzE0LCJleHAiOjE3NTkzMTE3MTR9.BGarQZcWZHIZqbq2b1QHG--W4McybyWiBx33aoOGOxo
+{
+  "completed": true 
+}
+
+### delete todo - DELETE
+DELETE http://localhost:5000/todos/4
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNzU5MjI1MzE0LCJleHAiOjE3NTkzMTE3MTR9.BGarQZcWZHIZqbq2b1QHG--W4McybyWiBx33aoOGOxo
