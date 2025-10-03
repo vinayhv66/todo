@@ -17,6 +17,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends openssl ca-cert
 COPY . .
 
 # Generate Prisma Client after all files are in place
+RUN node -v || true; npm -v || true; which npm || true; which node || true; ls -la node_modules/.bin || true; npx -v || true; npx prisma -v || true; ./node_modules/.bin/prisma -v || true
 RUN npm run build
 
 # Expose the port that the app runs on
