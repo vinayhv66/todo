@@ -23,6 +23,12 @@ app.get('/', (req, res) => {
 app.use('/auth', authRoutes)
 app.use('/todos', authMiddleware, todoRoutes)
 
-app.listen(PORT, () => {
-  console.log(`Server is running on port ${PORT}`); // logging the server status
-})
+// Export the app for Vercel
+export default app;
+
+// Only start server if not in Vercel environment
+if (process.env.NODE_ENV !== 'production' || !process.env.VERCEL) {
+  app.listen(PORT, () => {
+    console.log(`Server is running on port ${PORT}`); // logging the server status
+  });
+}
