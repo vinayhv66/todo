@@ -19,6 +19,11 @@ app.use(express.json());
 //tells express to serve all files in the public folder as static assets/files.Any request to the css file will be resolved to the public folder
 app.use(express.static(path.join(__dirname, '../public')));
 
+// health check
+app.get('/health', (req, res) => {
+  res.status(200).json({ status: 'ok' });
+});
+
 app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, '../public', 'index.html'));
 });
