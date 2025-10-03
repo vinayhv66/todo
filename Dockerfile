@@ -6,12 +6,17 @@ WORKDIR /app
 
 # Copy the package.json and the package-lock.json files to the container
 COPY package*.json .
+COPY prisma ./prisma
 
-# Install the dependencies
-RUN npm install
+# Install system dependencies required by Prisma on Alpine and then install node deps
+RUN apk add --no-cache libc6-compat openssl && \
+  npm ci || npm install
 
 # Copy the rest of the application code
 COPY . .
+
+# Generate Prisma Client after all files are in place
+RUN npx prisma generate
 
 # Expose the port that the app runs on
 EXPOSE 5000

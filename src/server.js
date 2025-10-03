@@ -1,4 +1,5 @@
 import express from 'express';
+import cors from 'cors';
 import path, { dirname } from 'path';
 import { fileURLToPath } from 'url';
 const app = express(); // invoking express to create an app instance
@@ -11,6 +12,8 @@ const __filename = fileURLToPath(import.meta.url);
 // get the directory name from the file path
 const __dirname = path.dirname(__filename);
 //middleware
+const allowedOrigin = process.env.CORS_ORIGIN || '*';
+app.use(cors({ origin: allowedOrigin, credentials: true }));
 app.use(express.json());
 // servers the html file that is in the public folder
 //tells express to serve all files in the public folder as static assets/files.Any request to the css file will be resolved to the public folder
