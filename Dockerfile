@@ -1,5 +1,5 @@
 # Use an official node.js runtime as a parent image
-FROM node:22-alpine
+FROM node:22-slim
 
 # Set the working directory in the container
 WORKDIR /app
@@ -8,8 +8,9 @@ WORKDIR /app
 COPY package*.json .
 COPY prisma ./prisma
 
-# Install system dependencies required by Prisma on Alpine and then install node deps
-RUN apk add --no-cache libc6-compat openssl && \
+# Install system dependencies required by Prisma on Debian and then install node deps
+RUN apt-get update && apt-get install -y --no-install-recommends openssl ca-certificates && \
+  rm -rf /var/lib/apt/lists/* && \
   npm ci || npm install
 
 # Copy the rest of the application code
