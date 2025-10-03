@@ -23,5 +23,5 @@ RUN npm run build
 # Expose the port that the app runs on
 EXPOSE 5000
 
-# Define the command to run your application
-CMD ["node", "src/server.js"]
+# Define the command to run your application with migrations applied via npm
+CMD ["npm", "run", "start"]
