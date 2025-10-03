@@ -59,7 +59,9 @@
     let selectedTab = 'All'
     let todos = []
 
-    const apiBase = window.location.origin + '/'
+    const apiBase = (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1')
+        ? 'http://localhost:5000/'
+        : 'https://todo-app-xgze.onrender.com/'
 
     // elements
     const nav = document.querySelector('nav')

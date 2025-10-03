@@ -5,8 +5,8 @@ const config = {
     apiUrl: 'http://localhost:5000'
   },
   production: {
-    baseUrl: 'https://todo-m13aqj2pn-yc-directorys-projects-c68fc445.vercel.app',
-    apiUrl: 'https://todo-m13aqj2pn-yc-directorys-projects-c68fc445.vercel.app'
+    baseUrl: 'https://todo-app-xgze.onrender.com/',
+    apiUrl: 'https://todo-app-xgze.onrender.com/'
   }
 };
 
