@@ -1,0 +1,16 @@
+node_modules
+npm-debug.log
+Dockerfile
+docker-compose.yaml
+.git
+.gitignore
+.env
+.env.*
+.vercel
+.vscode
+coverage
+build
+.tmp
+.tmp*
+*.log
+**/.DS_Store
