@@ -1,8 +1,8 @@
 ### GEt /
-GET https://todo-m13aqj2pn-yc-directorys-projects-c68fc445.vercel.app/
+GET http://localhost:5000/
 
 ###
-POST https://todo-m13aqj2pn-yc-directorys-projects-c68fc445.vercel.app/auth/register
+POST http://localhost:5000/auth/register
 Content-Type: application/json
 
 {
@@ -11,7 +11,7 @@ Content-Type: application/json
 }
 
 ###
-POST https://todo-m13aqj2pn-yc-directorys-projects-c68fc445.vercel.app/auth/login
+POST http://localhost:5000/auth/login
 Content-Type: application/json  
 
 {
@@ -19,11 +19,11 @@ Content-Type: application/json
   "password": "123123"
 }
 ### fetch todos get todos
-GET https://todo-m13aqj2pn-yc-directorys-projects-c68fc445.vercel.app/todos
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNzU5MjI1MzE0LCJleHAiOjE3NTkzMTE3MTR9.BGarQZcWZHIZqbq2b1QHG--W4McybyWiBx33aoOGOxo
+GET http://localhost:5000/todos
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NSwiaWF0IjoxNzU5NTY4MzcwLCJleHAiOjE3NTk2NTQ3NzB9.GhemYYHHUoD6IoPln40SZhoUIp3X9j8VfkzSLqLXKog
 ### create todo - POST
-POST https://todo-m13aqj2pn-yc-directorys-projects-c68fc445.vercel.app/todos
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNzU5MjI1MzE0LCJleHAiOjE3NTkzMTE3MTR9.BGarQZcWZHIZqbq2b1QHG--W4McybyWiBx33aoOGOxo
+POST http://localhost:5000/todos
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NSwiaWF0IjoxNzU5NTY4MzcwLCJleHAiOjE3NTk2NTQ3NzB9.GhemYYHHUoD6IoPln40SZhoUIp3X9j8VfkzSLqLXKog
 Content-Type: application/json
 
 {
@@ -31,12 +31,15 @@ Content-Type: application/json
 }
 
 ### update todo - PUT
-PUT https://todo-m13aqj2pn-yc-directorys-projects-c68fc445.vercel.app/todos/5
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNzU5MjI1MzE0LCJleHAiOjE3NTkzMTE3MTR9.BGarQZcWZHIZqbq2b1QHG--W4McybyWiBx33aoOGOxo
+PUT http://localhost:5000/todos/11
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NSwiaWF0IjoxNzU5NTY4MzcwLCJleHAiOjE3NTk2NTQ3NzB9.GhemYYHHUoD6IoPln40SZhoUIp3X9j8VfkzSLqLXKog
+Content-Type: application/json
+
 {
+
   "completed": true 
 }
 
 ### delete todo - DELETE
-DELETE https://todo-m13aqj2pn-yc-directorys-projects-c68fc445.vercel.app/todos/4
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNzU5MjI1MzE0LCJleHAiOjE3NTkzMTE3MTR9.BGarQZcWZHIZqbq2b1QHG--W4McybyWiBx33aoOGOxo
+DELETE http://localhost:5000/todos/12
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NSwiaWF0IjoxNzU5NTY4MzcwLCJleHAiOjE3NTk2NTQ3NzB9.GhemYYHHUoD6IoPln40SZhoUIp3X9j8VfkzSLqLXKog
